@@ -1,0 +1,39 @@
+/* What does the app's SQL look like? */
+CREATE TABLE instagram (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    profile_username TEXT,
+    photo_id INTEGER,
+    caption TEXT,
+    views INTEGER);
+    
+INSERT INTO instagram (profile_username, photo_id, caption, views)
+    VALUES ("jaycvilla", 1, "caption sample 1", 100);
+INSERT INTO instagram (profile_username, photo_id, caption, views)
+    VALUES ("abc123", 10, "caption sample 2", 325);
+INSERT INTO instagram (profile_username, photo_id, caption, views)
+    VALUES ("instagramprofile2", 5, "caption sample 3", 50);
+INSERT INTO instagram (profile_username, photo_id, caption, views)
+    VALUES ("instagramprofile3", 6, "caption sample 4", 75);
+INSERT INTO instagram (profile_username, photo_id, caption, views)
+    VALUES ("instagramprofile4", 7, "caption sample 5", 800);
+INSERT INTO instagram (profile_username, photo_id, caption, views)
+    VALUES ("instagramprofile5", 8, "caption sample 6", 900);  
+INSERT INTO instagram (profile_username, photo_id, caption, views)
+    VALUES ("instagramprofile26", 9, "caption sample 7", 950);
+    
+SELECT * FROM instagram;
+
+ALTER TABLE instagram ADD shares INTEGER default "unknown";
+
+SELECT * FROM instagram;
+
+UPDATE instagram SET shares = 10 WHERE photo_id = 1;
+UPDATE instagram SET shares = 1000 WHERE photo_id = 10;
+UPDATE instagram SET shares = 10000 WHERE photo_id = 5;
+UPDATE instagram SET shares = 1000 WHERE photo_id = 6;
+UPDATE instagram SET shares = 100000 WHERE photo_id = 7;
+UPDATE instagram SET shares = 100 WHERE photo_id = 9;
+
+DELETE FROM instagram WHERE photo_id = 8;
+
+SELECT * FROM instagram;
