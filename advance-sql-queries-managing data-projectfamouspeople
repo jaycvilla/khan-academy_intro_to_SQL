@@ -1,0 +1,54 @@
+/* Create table about the people and what they do here */
+CREATE TABLE actors (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    age INTEGER,
+    marriedid INTEGER);
+    
+INSERT INTO actors 
+    VALUES (1, "Leonardo DiCaprio", "46", 4);
+INSERT INTO actors 
+    VALUES (2, "Brad Pitt", "57", 5);
+INSERT INTO actors 
+    VALUES (3, "Marilyn Monroe", "95", NULL);
+INSERT INTO actors 
+    VALUES (4, "Camila Morrone", "24", 1);
+INSERT INTO actors 
+    VALUES (5, "Angelina Jolie", "46", 2);
+
+/* What movies are they in? */
+CREATE TABLE movies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    actor_id INTEGER,
+    movie TEXT,
+    releaseyear TEXT,
+    totalboxearnings INTEGER);
+    
+
+
+INSERT INTO movies (actor_id, movie, releaseyear,totalboxearnings) VALUES (1, "Inception", "2010", 825500000);
+INSERT INTO movies (actor_id, movie, releaseyear, totalboxearnings) VALUES (1, "Titanic", "1997", 2200000000);
+INSERT INTO movies (actor_id, movie, releaseyear, totalboxearnings) VALUES (2, "World War Z", "2013", 531514650);
+INSERT INTO movies (actor_id, movie, releaseyear,totalboxearnings) VALUES (2, "Mr. and Mrs. Smith", "2005", 486140090);
+INSERT INTO movies (actor_id, movie, releaseyear, totalboxearnings) VALUES (3, "Some Like it Hot", "1959", 354500000);
+INSERT INTO movies (actor_id, movie, releaseyear, totalboxearnings) VALUES (3, "How to Marry a Millionaire", "1953", 337700000);
+INSERT INTO movies (actor_id, movie, releaseyear, totalboxearnings) VALUES (4, "Death Wish", "2018", 48500000);
+INSERT INTO movies (actor_id, movie, releaseyear, totalboxearnings) VALUES (5, "Maleficent", "2014", 758500000);
+INSERT INTO movies (actor_id, movie, releaseyear, totalboxearnings) VALUES (5, "Maleficent: Mistress of Evil", "2019", 436000000);
+
+SELECT actors.name, movies.movie
+FROM actors
+JOIN movies
+ON actors.id = movies.actor_id;
+
+SELECT actors.name AS actors_name, married.name AS married_to 
+    FROM actors
+    LEFT OUTER JOIN actors married
+    ON actors.marriedid = married.id;
+
+SELECT actors.name, actors.age, avg(movies.totalboxearnings) AS AVG_Earnings_Top_Two_Movies
+    FROM actors
+    LEFT OUTER JOIN movies
+    ON actors.id = movies.actor_id
+    GROUP BY actors.name 
+    ORDER BY movies.totalboxearnings desc;
